@@ -1,7 +1,15 @@
+
+
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
@@ -9,37 +17,39 @@ body {
     background-color: #0d1117;
     background-image: url('assets/paymentskin.png');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     color: #c9d1d9;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    width: 100vw;
-    overflow-x: hidden;
+    padding: clamp(15px, 3vw, 40px);
 }
 
 .container {
     text-align: center;
     background: #161b22;
-    padding: 40px;
-    border-radius: 12px;
+    padding: clamp(20px, 4vw, 40px);
+    border-radius: clamp(8px, 1vw, 12px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     border: 1px solid #30363d;
+    width: min(100%, 400px);
     max-width: 400px;
-    width: 100%;
 }
 
 header h1 {
-    font-size: 24px;
+    font-size: clamp(20px, 2.2vw, 24px);
     margin-bottom: 10px;
     color: #ffffff;
 }
 
 header p {
-    font-size: 14px;
+    font-size: clamp(13px, 1.4vw, 14px);
     color: #8b949e;
     margin-bottom: 25px;
 }
@@ -54,8 +64,8 @@ header p {
     background-color: #238636;
     color: #ffffff;
     border: none;
-    padding: 12px 20px;
-    font-size: 16px;
+    padding: clamp(10px, 1.5vw, 12px) clamp(14px, 2.2vw, 20px);
+    font-size: clamp(14px, 1.5vw, 16px);
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
@@ -70,4 +80,29 @@ header p {
     font-size: 14px;
     color: #8b949e;
     margin-top: 10px;
+}
+
+/* ===== Responsive scaling =====
+   The page now adapts continuously to the available viewport.
+   On narrow/tall screens the content can scroll instead of being clipped.
+*/
+@media (max-width: 600px) {
+    body {
+        align-items: flex-start;
+        padding: 20px 12px;
+        background-attachment: scroll;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+@media (max-height: 600px) {
+    body {
+        align-items: flex-start;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
 }
