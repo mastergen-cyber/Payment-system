@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт на GitHub</title>
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Добро пожаловать на мой сайт!</h1>
+            <p>Здесь будут размещаться мои кнопки и интерактивные элементы.</p>
+        </header>
+
+        <main>
+            <!-- Секция с кнопками и элементами -->
+            <section class="card">
+                <h2>Панель управления</h2>
+                <button id="mainButton" class="btn">Нажми на меня</button>
+                <div id="output" class="output-text">Элемент ожидает действия...</div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Подключение скриптов -->
+    <script src="script.js"></script>
+</body>
+</html>
