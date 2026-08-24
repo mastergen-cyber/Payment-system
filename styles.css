@@ -1,6 +1,12 @@
 
 
 
+/* =========================================================
+   MASTERGEN PAYMENT SYSTEM
+   FIXED PROPORTIONAL UI SCALING
+   Base design resolution: 1600 x 900
+   ========================================================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,47 +15,90 @@
 
 html {
     width: 100%;
-    min-height: 100%;
-}
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #0d1117;
-    background-image: url('assets/paymentskin.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #c9d1d9;
-    min-height: 100vh;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: clamp(15px, 3vw, 40px);
+
+    background: #0d1117;
 }
+
+body {
+    /* The entire interface uses one fixed design coordinate system. */
+    width: 1600px;
+    height: 900px;
+    min-width: 1600px;
+    min-height: 900px;
+    max-width: 1600px;
+    max-height: 900px;
+
+    position: relative;
+    overflow: hidden;
+
+    font-family: Arial, sans-serif;
+    color: #c9d1d9;
+
+    background-color: #0d1117;
+    background-image: url('assets/paymentskin.png');
+    background-size: 1600px 900px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+
+    /*
+      One scale factor is applied to the WHOLE interface.
+      The smaller of width/height is used, so the 1600:900
+      proportions are never distorted.
+
+      1600 x 900 = 100% of the design size.
+      1920 x 1080 -> 1.20
+      1366 x 768  -> 0.85375
+      1280 x 720  -> 0.80
+      2560 x 1440 -> 1.60
+      1024 x 768  -> 0.64
+    */
+    zoom: min(
+        calc(100vw / 1600px),
+        calc(100vh / 900px)
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------------------------------------------------------
+   Existing interface
+   Everything inside body inherits the same global scale.
+   Do NOT use vw/vh for individual interface elements.
+   --------------------------------------------------------- */
 
 .container {
     text-align: center;
     background: #161b22;
-    padding: clamp(20px, 4vw, 40px);
-    border-radius: clamp(8px, 1vw, 12px);
+
+    /* Fixed design-space dimensions. */
+    width: 400px;
+    max-width: 400px;
+
+    padding: 40px;
+
+    border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     border: 1px solid #30363d;
-    width: min(100%, 400px);
-    max-width: 400px;
 }
 
 header h1 {
-    font-size: clamp(20px, 2.2vw, 24px);
+    font-size: 24px;
     margin-bottom: 10px;
     color: #ffffff;
 }
 
 header p {
-    font-size: clamp(13px, 1.4vw, 14px);
+    font-size: 14px;
     color: #8b949e;
     margin-bottom: 25px;
 }
@@ -64,8 +113,8 @@ header p {
     background-color: #238636;
     color: #ffffff;
     border: none;
-    padding: clamp(10px, 1.5vw, 12px) clamp(14px, 2.2vw, 20px);
-    font-size: clamp(14px, 1.5vw, 16px);
+    padding: 12px 20px;
+    font-size: 16px;
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
@@ -82,27 +131,20 @@ header p {
     margin-top: 10px;
 }
 
-/* ===== Responsive scaling =====
-   The page now adapts continuously to the available viewport.
-   On narrow/tall screens the content can scroll instead of being clipped.
-*/
-@media (max-width: 600px) {
-    body {
-        align-items: flex-start;
-        padding: 20px 12px;
-        background-attachment: scroll;
-    }
+/* ---------------------------------------------------------
+   IMPORTANT:
+   No responsive breakpoints are used for the interface.
+   There is intentionally no separate mobile/tablet layout.
 
-    .container {
-        width: 100%;
-        max-width: 400px;
-    }
+   The same 1600 x 900 design is simply scaled as one unit.
+   Therefore an element added at a fixed position keeps the
+   same relative position on every monitor.
+   --------------------------------------------------------- */
+
+@media (max-aspect-ratio: 1600/900) {
+    /* Height is the limiting dimension automatically. */
 }
 
-@media (max-height: 600px) {
-    body {
-        align-items: flex-start;
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
+@media (min-aspect-ratio: 1600/900) {
+    /* Width is the limiting dimension automatically. */
 }
