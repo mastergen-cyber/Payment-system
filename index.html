@@ -3,11 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой сайт</title>
+    <title>MASTERGEN Payment System</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <script src="script.js"></script>
+    <main class="container">
+        <header>
+            <h1>Выберите криптовалюту</h1>
+            <p>Выберите способ оплаты</p>
+        </header>
+
+        <div class="crypto-buttons" aria-label="Криптовалюты">
+            <button class="crypto-btn" type="button" data-currency="BTC">
+                <img src="assets/btc.png" alt="Bitcoin">
+            </button>
+            <button class="crypto-btn" type="button" data-currency="ETH">
+                <img src="assets/eth.png" alt="Ethereum">
+            </button>
+            <button class="crypto-btn" type="button" data-currency="SOL">
+                <img src="assets/sjolana.png" alt="Solana">
+            </button>
+            <button class="crypto-btn" type="button" data-currency="USDC">
+                <img src="assets/usdc.png" alt="USDC">
+            </button>
+            <button class="crypto-btn" type="button" data-currency="TON">
+                <img src="assets/ton.png" alt="TON">
+            </button>
+        </div>
+
+        <p class="output-text" id="selectedCurrency">Валюта не выбрана</p>
+    </main>
+
 </body>
 </html>

@@ -148,3 +148,48 @@ header p {
 @media (min-aspect-ratio: 1600/900) {
     /* Width is the limiting dimension automatically. */
 }
+
+/* Cryptocurrency payment buttons */
+.crypto-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.crypto-btn {
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    background: #0d1117;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
+}
+
+.crypto-btn img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.crypto-btn:hover {
+    transform: translateY(-2px);
+    border-color: #8b949e;
+    background-color: #161b22;
+}
+
+.crypto-btn:active {
+    transform: translateY(0);
+}
+
+.crypto-btn:focus-visible {
+    outline: 2px solid #58a6ff;
+    outline-offset: 2px;
+}
