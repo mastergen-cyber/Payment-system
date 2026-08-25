@@ -77,11 +77,19 @@ body {
 }
 
 /* ===================== BTC ===================== */
-#btn-bt {
+#btn-btc {
     left: 560px;
     top: 410px;
     width: 80px;
     height: 80px;
+}
+
+#btn-btc img {
+    width: 80px;
+    height: 80px;
+    max-width: 80px;
+    max-height: 80px;
+    object-fit: contain;
 }
 
 /* ===================== ETH ===================== */
