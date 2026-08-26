@@ -197,23 +197,23 @@ body {
 /* ===================== ENGLISH ===================== */
 #btn-lang-en {
     left: 400px;
-    top: 280px;
+    top: 290px;
     width: 350px;
     height: 40px;
 }
 
 /* ===================== УКРАЇНСЬКА =================== */
 #btn-lang-ua {
-    left: 1160px;
-    top: 300px;
-    width: 70px;
+    left: 480px;
+    top: 290px;
+    width: 350px;
     height: 40px;
 }
 
 /* ===================== РУССКИЙ ===================== */
 #btn-lang-ru {
-    left: 1240px;
-    top: 300px;
-    width: 70px;
+    left: 560px;
+    top: 290px;
+    width: 350px;
     height: 40px;
 }
