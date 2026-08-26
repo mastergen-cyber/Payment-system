@@ -185,7 +185,7 @@ body {
 
 .lang-btn:hover img,
 .lang-btn:focus-visible img {
-    filter: brightness(1.16) drop-shadow(0 0 15px rgb(231 150 54 / 55%));
+    filter: brightness(1.16) drop-shadow(0 0 15px rgba(159, 124, 255, 0.55));
     transform: scale(1.035);
     outline: none;
 }
