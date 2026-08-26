@@ -204,7 +204,7 @@ body {
 
 /* ===================== УКРАЇНСЬКА =================== */
 #btn-lang-ua {
-    left: 480px;
+    left: 1000px;
     top: 290px;
     width: 350px;
     height: 40px;
@@ -212,7 +212,7 @@ body {
 
 /* ===================== РУССКИЙ ===================== */
 #btn-lang-ru {
-    left: 560px;
+    left: 1160px;
     top: 290px;
     width: 350px;
     height: 40px;
