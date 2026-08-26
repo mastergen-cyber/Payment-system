@@ -79,7 +79,7 @@ body {
 /* ===================== BTC ===================== */
 #btn-btc {
     left: 560px;
-    top: 600px;
+    top: 700px;
     width: 80px;
     height: 80px;
 }
@@ -95,7 +95,7 @@ body {
 /* ===================== ETH ===================== */
 #btn-eth {
     left: 660px;
-    top: 410px;
+    top: 700px;
     width: 80px;
     height: 80px;
 }
@@ -103,7 +103,7 @@ body {
 /* ==================== SOLANA ================== */
 #btn-solana {
     left: 760px;
-    top: 410px;
+    top: 700px;
     width: 80px;
     height: 80px;
 }
@@ -111,7 +111,7 @@ body {
 /* ===================== USDC =================== */
 #btn-usdc {
     left: 860px;
-    top: 410px;
+    top: 700px;
     width: 80px;
     height: 80px;
 }
@@ -119,7 +119,7 @@ body {
 /* ====================== TON =================== */
 #btn-ton {
     left: 960px;
-    top: 410px;
+    top: 700px;
     width: 80px;
     height: 80px;
 }
