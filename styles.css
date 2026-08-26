@@ -125,9 +125,7 @@ body {
 }
 
 /* =========================================================
-   ПОДСВЕТКА КНОПОК
-   Такой же эффект, как в примере пользователя:
-   brightness + оранжевое свечение + лёгкое увеличение.
+   ПОДСВЕТКА КНОПОК КРИПТОВАЛЮТ
    ========================================================= */
 
 .crypto-btn:hover img,
@@ -145,4 +143,77 @@ body {
     transition:
         filter 0.15s ease,
         transform 0.15s ease;
+}
+
+/* =========================================================
+   ЯЗЫКОВЫЕ КНОПКИ
+   Каждая кнопка регулируется отдельно: left / top / width / height.
+   ========================================================= */
+
+.lang-btn {
+    position: absolute;
+
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+
+    display: block;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.lang-btn img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    border: 0;
+    outline: 0;
+    background: transparent;
+
+    user-select: none;
+    -webkit-user-drag: none;
+
+    transition:
+        filter 0.15s ease,
+        transform 0.15s ease;
+}
+
+.lang-btn:hover img,
+.lang-btn:focus-visible img {
+    filter: brightness(1.16) drop-shadow(0 0 15px rgb(231 150 54 / 55%));
+    transform: scale(1.035);
+    outline: none;
+}
+
+.lang-btn:active img {
+    transform: scale(0.98);
+}
+
+/* ===================== ENGLISH ===================== */
+#btn-lang-en {
+    left: 1080px;
+    top: 100px;
+    width: 70px;
+    height: 40px;
+}
+
+/* ===================== УКРАЇНСЬКА =================== */
+#btn-lang-ua {
+    left: 1160px;
+    top: 100px;
+    width: 70px;
+    height: 40px;
+}
+
+/* ===================== РУССКИЙ ===================== */
+#btn-lang-ru {
+    left: 1240px;
+    top: 100px;
+    width: 70px;
+    height: 40px;
 }
