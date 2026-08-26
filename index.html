@@ -8,6 +8,12 @@
 </head>
 <body>
 
+    <!-- Информационный текст: меняется при выборе языка -->
+    <div id="payment-info" class="payment-info">
+        <p id="payment-info-text">Для того, чтобы внести оплату за ключ активации, для программы MASTERGEN ANALYZER, выберите, удобный для вас способ оплаты и скопируйте адрес кошелька.</p>
+    </div>
+
+
     <button id="btn-btc" class="crypto-btn" type="button" data-currency="BTC">
         <img src="assets/bt.png" alt="" draggable="false">
     </button>
@@ -40,6 +46,23 @@
     <button id="btn-lang-ru" class="lang-btn" type="button" data-lang="ru">
         <img src="assets/русский.png" alt="Русский" draggable="false">
     </button>
+
+
+    <script>
+        const paymentTexts = {
+            ru: "Для того, чтобы внести оплату за ключ активации, для программы MASTERGEN ANALYZER, выберите, удобный для вас способ оплаты и скопируйте адрес кошелька.",
+            ua: "Для того, щоб зробити оплату за ключ активації, для програми MASTERGEN ANALYZER, виберіть, зручний для вас спосіб оплати та скопіюйте адресу гаманця.",
+            en: "To pay for the activation key for the MASTERGEN ANALYZER program, select, your preferred payment method and copy the wallet address."
+        };
+
+        const paymentInfoText = document.getElementById("payment-info-text");
+
+        document.querySelectorAll(".lang-btn").forEach((button) => {
+            button.addEventListener("click", () => {
+                paymentInfoText.textContent = paymentTexts[button.dataset.lang];
+            });
+        });
+    </script>
 
 </body>
 </html>
