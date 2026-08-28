@@ -80,8 +80,8 @@ body {
 #btn-btc {
     left: 150px;
     top: 320px;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
 }
 
 #btn-btc img {
@@ -94,7 +94,7 @@ body {
 
 /* ===================== ETH ===================== */
 #btn-eth {
-    left: 150px;
+    left: 200px;
     top: 415px;
     width: 100px;
     height: 100px;
