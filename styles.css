@@ -80,15 +80,15 @@ body {
 #btn-btc {
     left: 150px;
     top: 320px;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
 }
 
 #btn-btc img {
     width: 100px;
     height: 100px;
-    max-width: 80px;
-    max-height: 80px;
+    max-width: 100px;
+    max-height: 100px;
     object-fit: contain;
 }
 
