@@ -104,24 +104,24 @@ body {
 #btn-solana {
     left: 150px;
     top: 510px;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
 }
 
 /* ===================== USDC =================== */
 #btn-usdc {
     left: 150px;
     top: 605px;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
 }
 
 /* ====================== TON =================== */
 #btn-ton {
     left: 150px;
     top: 700px;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
 }
 
 /* =========================================================
