@@ -8,12 +8,22 @@
 </head>
 <body>
 
-    <!-- Информационный текст: меняется при выборе языка -->
+    <!-- Центральный блок (информация и кошельки) -->
     <div id="payment-info" class="payment-info">
-        <p id="payment-info-text">To pay for the activation key for the MASTERGEN ANALYZER program, select, your preferred payment method and copy the wallet address.</p>
+        
+        <!-- Стартовый текст -->
+        <div id="payment-info-content">
+            <p id="payment-info-text">To pay for the activation key for the MASTERGEN ANALYZER program, select, your preferred payment method and copy the wallet address.</p>
+        </div>
+
+        <!-- Контейнер для списка кошельков (скрыт по умолчанию) -->
+        <div id="wallet-container" class="wallet-container" style="display: none;">
+            <!-- Сюда скриптом будут добавляться кошельки -->
+        </div>
+
     </div>
 
-
+    <!-- Кнопки криптовалют -->
     <button id="btn-btc" class="crypto-btn" type="button" data-currency="BTC">
         <img src="assets/bt.png" alt="" draggable="false">
     </button>
@@ -38,6 +48,7 @@
         <img src="assets/ltc.png" alt="" draggable="false">
     </button>
 
+
     <!-- Кнопки выбора языка -->
     <button id="btn-lang-en" class="lang-btn" type="button" data-lang="en">
         <img src="assets/english.png" alt="English" draggable="false">
@@ -53,18 +64,155 @@
 
 
     <script>
+        // ==========================================
+        // БАЗА ДАННЫХ КОШЕЛЬКОВ
+        // ==========================================
+        const cryptoWallets = {
+            USDC: [
+                { network: "Ethereum", address: "0x942D237bF87704671068E711720C2AE30ad73E2B" },
+                { network: "Polygon", address: "0x942D237bF87704671068E711720C2AE30ad73E2B" },
+                { network: "Arbitrum", address: "0x942D237bF87704671068E711720C2AE30ad73E2B" },
+                { network: "BNB Smart Chain", address: "0x942D237bF87704671068E711720C2AE30ad73E2B" },
+                { network: "Solana", address: "GC1pqMv4KtossVEQy6u5gna1sQu5ea6gP9JnFjjZFzcE" },
+                { network: "Base", address: "0x942D237bF87704671068E711720C2AE30ad73E2B" }
+            ],
+            ETH: [
+                { network: "Ethereum", address: "0x942D237bF87704671068E711720C2AE30ad73E2B" }
+            ],
+            BTC: [
+                { network: "Bitcoin", address: "bc1qm6aug0p7vrtesw5f6xw9sh5xrjduwx33ysk02e" }
+            ],
+            TON: [
+                { network: "TON", address: "UQAZ4ruVLOIRB8S6t2jyUkY42S3Z46boQtWSCVsrds0aNw2V" },
+                { network: "Memo", address: "84CE52589488AF2206AD", isMemo: true }
+            ],
+            SOL: [
+                { network: "Solana", address: "GC1pqMv4KtossVEQy6u5gna1sQu5ea6gP9JnFjjZFzcE" }
+            ],
+            LTC: [
+                { network: "Litecoin", address: "ltc1qknj5htkhf8jvyxph5ay5e8guqlr3u6sfdfz3s3" }
+            ]
+        };
+
+        // ==========================================
+        // ПЕРЕВОДЫ ТЕКСТОВ
+        // ==========================================
         const paymentTexts = {
             ru: "Для того, чтобы внести оплату за ключ активации, для программы MASTERGEN ANALYZER, выберите, удобный для вас, способ оплаты и скопируйте адрес кошелька. После оплаты, перейдите в историю  переводов вашего кошелька и вышлите скриншот транзакции вашей оплаты, для проверки.",
-            ua: "Для того, щоб зробити оплату за ключ активації, для програми MASTERGEN ANALYZER, виберіть, зручний для вас, спосіб оплати та скопіюйте адресу гаманця. Після оплати, перейдіть в історію переказів вашого гаманця та надішліть скріншот транзакції вашої оплати, для перевірки.",
+            ua: "Для того, щоб зробити оплату за ключ активації, для програми MASTERGEN ANALYZER, виберіть, зручний для вас, спосіб оплати та скопіюйте адресу гаманця. После оплати, перейдіть в історію переказів вашого гаманця та надішліть скріншот транзакції вашої оплати, для перевірки.",
             en: "To pay for the activation key for the MASTERGEN ANALYZER program, select, your preferred payment method and copy the wallet address. After making the payment, go to your wallet's transaction history and send a screenshot of the payment transaction for verification."
         };
 
-        const paymentInfoText = document.getElementById("payment-info-text");
+        const memoTexts = {
+            ru: "Комментарий",
+            ua: "Примітка",
+            en: "Comment"
+        };
 
-        document.querySelectorAll(".lang-btn").forEach((button) => {
-            button.addEventListener("click", () => {
-                paymentInfoText.textContent = paymentTexts[button.dataset.lang];
+        const copyBtnTexts = { ru: "Копировать", ua: "Скопіювати", en: "Copy" };
+        const copiedTexts = { ru: "Скопировано", ua: "Скопійовано", en: "Copied" };
+
+        let currentLang = 'en'; // Язык по умолчанию
+        let activeCurrency = null;
+
+        const paymentInfoText = document.getElementById("payment-info-text");
+        const infoContent = document.getElementById('payment-info-content');
+        const walletContainer = document.getElementById('wallet-container');
+
+        // Функция отрисовки кошельков
+        function renderWallets(currency) {
+            walletContainer.innerHTML = '';
+            cryptoWallets[currency].forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'wallet-row';
+                
+                let labelText = `${currency} (${item.network})`;
+                if (item.isMemo) {
+                    labelText = memoTexts[currentLang];
+                }
+
+                let addressStyle = '';
+                if (currency === 'TON' && !item.isMemo) {
+                    addressStyle = 'font-size: 15px; letter-spacing: -0.3px;';
+                }
+
+                row.innerHTML = `
+                    <div class="wallet-network">${labelText}</div>
+                    <div class="wallet-address" style="${addressStyle}">${item.address}</div>
+                    <button class="copy-btn" data-address="${item.address}">
+                        <span class="copy-text">${copyBtnTexts[currentLang]}</span>
+                        <svg class="check-icon" viewBox="0 0 24 24" width="20" height="20">
+                            <circle cx="12" cy="12" r="10" fill="#4caf50"/>
+                            <path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </button>
+                `;
+
+                // Событие копирования
+                const copyBtn = row.querySelector('.copy-btn');
+                copyBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Предотвращаем закрытие при клике на кнопку копирования
+                    navigator.clipboard.writeText(item.address).then(() => {
+                        const textSpan = copyBtn.querySelector('.copy-text');
+                        const iconSVG = copyBtn.querySelector('.check-icon');
+
+                        textSpan.dataset.state = 'copied';
+                        textSpan.textContent = copiedTexts[currentLang];
+                        iconSVG.style.display = 'block';
+                        copyBtn.classList.add('success-glow');
+                        
+                        setTimeout(() => {
+                            textSpan.dataset.state = '';
+                            textSpan.textContent = copyBtnTexts[currentLang];
+                            iconSVG.style.display = 'none';
+                            copyBtn.classList.remove('success-glow');
+                        }, 2000);
+                    });
+                });
+
+                walletContainer.appendChild(row);
             });
+        }
+
+        // ==========================================
+        // ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ЯЗЫКОВ
+        // ==========================================
+        document.querySelectorAll(".lang-btn").forEach((button) => {
+            button.addEventListener("click", (e) => {
+                e.stopPropagation();
+                currentLang = button.dataset.lang;
+                paymentInfoText.textContent = paymentTexts[currentLang];
+                
+                if (activeCurrency && cryptoWallets[activeCurrency]) {
+                    renderWallets(activeCurrency);
+                }
+            });
+        });
+
+        // ==========================================
+        // ЛОГИКА ОТОБРАЖЕНИЯ КОШЕЛЬКОВ ПО КЛИКУ
+        // ==========================================
+        document.querySelectorAll('.crypto-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Останавливаем всплытие, чтобы клик не ушел в документ
+                const currency = btn.dataset.currency;
+
+                if (cryptoWallets[currency]) {
+                    activeCurrency = currency;
+                    infoContent.style.display = 'none';
+                    walletContainer.style.display = 'flex';
+                    renderWallets(currency);
+                }
+            });
+        });
+
+        // ==========================================
+        // КЛИК ПО ПУСТОМУ МЕСТУ ДЛЯ ВОЗВРАТА ТЕКСТА
+        // ==========================================
+        document.body.addEventListener('click', () => {
+            activeCurrency = null;
+            walletContainer.style.display = 'none';
+            infoContent.style.display = 'block';
         });
     </script>
 

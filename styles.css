@@ -44,18 +44,15 @@ body {
 
 /* =========================================================
    КАЖДАЯ КНОПКА РЕГУЛИРУЕТСЯ ОТДЕЛЬНО
-   Меняй только left / top / width / height.
    ========================================================= */
 
 .crypto-btn {
     position: absolute;
-
     padding: 0;
     margin: 0;
     border: 0;
     outline: 0;
     background: transparent;
-
     display: block;
     cursor: pointer;
     appearance: none;
@@ -67,106 +64,43 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain;
-
     border: 0;
     outline: 0;
     background: transparent;
-
     user-select: none;
     -webkit-user-drag: none;
+    transition: filter 0.15s ease, transform 0.15s ease;
 }
 
-/* ===================== BTC ===================== */
-#btn-btc {
-    left: 115px;
-    top: 370px;
-    width: 120px;
-    height: 120px;
-}
+/* Координаты крипто-кнопок */
+#btn-btc { left: 115px; top: 370px; width: 120px; height: 120px; }
+#btn-eth { left: 275px; top: 540px; width: 120px; height: 120px; }
+#btn-solana { left: 115px; top: 540px; width: 120px; height: 120px; }
+#btn-usdc { left: 275px; top: 370px; width: 120px; height: 120px; }
+#btn-ton { left: 115px; top: 710px; width: 120px; height: 120px; }
+#btn-ltc { left: 275px; top: 710px; width: 120px; height: 120px; }
 
-#btn-btc img {
-    width: 120px;
-    height: 120px;
-    max-width: 120px;
-    max-height: 120px;
-    object-fit: contain;
-}
-
-/* ===================== ETH ===================== */
-#btn-eth {
-    left: 275px;
-    top: 540px;
-    width: 120px;
-    height: 120px;
-}
-
-/* ==================== SOLANA ================== */
-#btn-solana {
-    left: 115px;
-    top: 540px;
-    width: 120px;
-    height: 120px;
-}
-
-/* ===================== USDC =================== */
-#btn-usdc {
-    left: 275px;
-    top: 370px;
-    width: 120px;
-    height: 120px;
-}
-
-/* ====================== TON =================== */
-#btn-ton {
-    left: 115px;
-    top: 710px;
-    width: 120px;
-    height: 120px;
-}
-
-/* ====================== LTC =================== */
-#btn-ltc {
-    left: 275px;
-    top: 710px;
-    width: 120px;
-    height: 120px;
-}
-
-/* =========================================================
-   ПОДСВЕТКА КНОПОК КРИПТОВАЛЮТ
-   ========================================================= */
-
+/* Подсветка */
 .crypto-btn:hover img,
 .crypto-btn:focus-visible img {
     filter: brightness(1.16) drop-shadow(0 0 15px rgb(159, 124, 255, 0.55));
     transform: scale(1.035);
     outline: none;
 }
+.crypto-btn:active img { transform: scale(0.98); }
 
-.crypto-btn:active img {
-    transform: scale(0.98);
-}
-
-.crypto-btn img {
-    transition:
-        filter 0.15s ease,
-        transform 0.15s ease;
-}
 
 /* =========================================================
    ЯЗЫКОВЫЕ КНОПКИ
-   Каждая кнопка регулируется отдельно: left / top / width / height.
    ========================================================= */
 
 .lang-btn {
     position: absolute;
-
     padding: 0;
     margin: 0;
     border: 0;
     outline: 0;
     background: transparent;
-
     display: block;
     cursor: pointer;
     appearance: none;
@@ -178,17 +112,12 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain;
-
     border: 0;
     outline: 0;
     background: transparent;
-
     user-select: none;
     -webkit-user-drag: none;
-
-    transition:
-        filter 0.15s ease,
-        transform 0.15s ease;
+    transition: filter 0.15s ease, transform 0.15s ease;
 }
 
 .lang-btn:hover img,
@@ -197,39 +126,15 @@ body {
     transform: scale(1.035);
     outline: none;
 }
+.lang-btn:active img { transform: scale(0.98); }
 
-.lang-btn:active img {
-    transform: scale(0.98);
-}
-
-/* ===================== ENGLISH ===================== */
-#btn-lang-en {
-    left: 440px;
-    top: 290px;
-    width: 350px;
-    height: 40px;
-}
-
-/* ===================== УКРАЇНСЬКА =================== */
-#btn-lang-ua {
-    left: 793px;
-    top: 290px;
-    width: 350px;
-    height: 40px;
-}
-
-/* ===================== РУССКИЙ ===================== */
-#btn-lang-ru {
-    left: 1145px;
-    top: 290px;
-    width: 350px;
-    height: 40px;
-}
+#btn-lang-en { left: 440px; top: 290px; width: 350px; height: 40px; }
+#btn-lang-ua { left: 793px; top: 290px; width: 350px; height: 40px; }
+#btn-lang-ru { left: 1145px; top: 290px; width: 350px; height: 40px; }
 
 
 /* =========================================================
-   ИНФОРМАЦИОННЫЙ ТЕКСТ
-   Прозрачный фон, текст по центру сайта.
+   ЦЕНТРАЛЬНЫЙ БЛОК (ИНФО + КОШЕЛЬКИ)
    ========================================================= */
 
 .payment-info {
@@ -247,22 +152,104 @@ body {
 
     padding: 0;
     margin: 0;
-
     background: transparent;
-    text-align: center;
-    pointer-events: none;
+    pointer-events: auto; 
 }
 
-.payment-info p {
+/* Стили стартового текста */
+#payment-info-content p {
     margin: 0;
     padding: 0;
-
     color: #bac5ff;
     background: transparent;
-
     font-family: Arial, Helvetica, sans-serif;
     font-size: 35px;
     font-weight: 400;
     line-height: 1.45;
     text-align: center;
+}
+
+/* =========================================================
+   ДИЗАЙН СПИСКА КОШЕЛЬКОВ
+   ========================================================= */
+
+.wallet-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-top: -15px;
+}
+
+/* Прозрачный блок под каждую строку */
+.wallet-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    background: rgba(255, 255, 255, 0.03); 
+    border: 1px solid rgba(159, 124, 255, 0.2); 
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.wallet-row:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.wallet-network {
+    color: #bac5ff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    width: 28%;
+    text-align: left;
+}
+
+.wallet-address {
+    color: #fff;
+    font-family: monospace;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    width: 55%;
+    text-align: left;
+}
+
+/* Кнопка "Копировать" */
+.copy-btn {
+    background: transparent;
+    color: #bac5ff;
+    border: 1px solid #bac5ff;
+    padding: 0 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: all 0.2s ease;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 150px;
+    height: 40px;
+}
+
+.copy-btn:hover {
+    background: rgba(186, 197, 255, 0.15);
+    transform: scale(1.02);
+}
+
+/* Эффект, когда скопировано */
+.copy-btn.success-glow {
+    border-color: #4caf50;
+    color: #4caf50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+/* Кружок с галочкой (по умолчанию скрыт) */
+.check-icon {
+    display: none;
+    flex-shrink: 0;
 }
