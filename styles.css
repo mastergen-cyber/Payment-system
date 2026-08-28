@@ -78,50 +78,50 @@ body {
 
 /* ===================== BTC ===================== */
 #btn-btc {
-    left: 150px;
-    top: 320px;
-    width: 100px;
-    height: 100px;
+    left: 115px;
+    top: 370px;
+    width: 120px;
+    height: 120px;
 }
 
 #btn-btc img {
-    width: 100px;
-    height: 100px;
-    max-width: 100px;
-    max-height: 100px;
+    width: 120px;
+    height: 120px;
+    max-width: 120px;
+    max-height: 120px;
     object-fit: contain;
 }
 
 /* ===================== ETH ===================== */
 #btn-eth {
-    left: 200px;
-    top: 415px;
-    width: 100px;
-    height: 100px;
+    left: 275px;
+    top: 540px;
+    width: 120px;
+    height: 120px;
 }
 
 /* ==================== SOLANA ================== */
 #btn-solana {
-    left: 150px;
-    top: 510px;
-    width: 100px;
-    height: 100px;
+    left: 115px;
+    top: 540px;
+    width: 120px;
+    height: 120px;
 }
 
 /* ===================== USDC =================== */
 #btn-usdc {
-    left: 150px;
-    top: 605px;
-    width: 100px;
-    height: 100px;
+    left: 275px;
+    top: 370px;
+    width: 120px;
+    height: 120px;
 }
 
 /* ====================== TON =================== */
 #btn-ton {
-    left: 150px;
-    top: 700px;
-    width: 100px;
-    height: 100px;
+    left: 115px;
+    top: 710px;
+    width: 120px;
+    height: 120px;
 }
 
 /* =========================================================
